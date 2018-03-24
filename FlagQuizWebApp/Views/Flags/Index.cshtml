@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section JavascriptHeader
+{
+    <script src="~/NgApp/ng-quiz.js"></script>
+}
+
+<div class="container">
+    <div id="appcontainer" class="col-sm-12" ng-controller="QuizController">
+        <div ng-hide="started">
+            <input type="button" value="{{InitText}}" ng-click="Start()">
+        </div>
+        <div ng-show="started" class=" row col-sm-12">
+            <div class="col-sm-4">
+                <img src="~/Images/{{Question.Id}}.png" class="rounded img-thumbnail img-responsive center-block ">
+            </div>
+            <div class="col-sm-8">
+                    <button class="btn btn-primary btn-block" ng-click="getAnswer(Question.Options[0])" ng-disabled="answered">{{Question.Options[0]}}</button>
+                    <button class="btn btn-primary btn-block" ng-click="getAnswer(Question.Options[1])" ng-disabled="answered">{{Question.Options[1]}}</button>
+                    <button class="btn btn-primary btn-block" ng-click="getAnswer(Question.Options[2])" ng-disabled="answered">{{Question.Options[2]}}</button>
+                    <button class="btn btn-primary btn-block" ng-click="getAnswer(Question.Options[3])" ng-disabled="answered">{{Question.Options[3]}}</button>
+            </div>
+        </div>
+        <div class="row"></div>
+        <br />
+        <div ng-show="started">
+            <input type="button" value="{{NextAction}}" ng-click="Next()" ng-disabled="answered == false">
+        </div>
+        <div class="col-sm-12">
+            <p>{{message}}</p>
+            <li ng-repeat='item in Summary'>
+                {{item}}
+            </li>
+        </div>
+    </div>
+</div>
